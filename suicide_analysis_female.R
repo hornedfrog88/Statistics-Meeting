@@ -62,3 +62,4 @@ mean_devworld <- mean(suicide_devworld_fem_since1990_df$total_suicides_100K_pop)
 shapiro.test(suicide_us_fem_since1990_df$total_suicides_100K_pop)
 shapiro.test(suicide_devworld_fem_since1990_df$total_suicides_100K_pop)
 t.test(suicide_us_fem_since1990_df$total_suicides_100K_pop,suicide_devworld_fem_since1990_df$total_suicides_100K_pop)
+             
