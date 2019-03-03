@@ -31,7 +31,7 @@ ggplot(suicide_us_fem_since1990_df,aes(x=year,y=total_pop))+geom_point()+
     axis.title.y = element_text(color="blue", size=12, face="bold")
   )
 
-develop_countries <- c('Germany')
+develop_countries <- c('United Kingdom')
 suicide_devworld_df <- suicide_df %>% filter(country %in% 
                                          develop_countries)
 suicide_devworld_df$suicides_per_100K <- suicide_devworld_df$suicides_per_100K/length(develop_countries)
@@ -42,7 +42,7 @@ suicide_devworld_fem_since1990_df <-  suicide_devworld_df %>%
   summarise(total_pop = sum(population)/1000000,total_suicides_100K_pop = sum(suicides_per_100K))  
 
 ggplot(suicide_devworld_fem_since1990_df,aes(x=year,y=total_suicides_100K_pop))+geom_point()+
-  ggtitle("Number of Female Suicides (in western nations) \n per Percent of Population by Year Since 1990")+ylab("Suicides as a Percentage of Population")+
+  ggtitle("Number of Female Suicides (in the United Kingdom) \n per 100K Population by Year Since 1990")+ylab("Suicides per 100K Population")+
   theme(
     plot.title = element_text(color="red", size=14, face="bold.italic"),
     axis.title.x = element_text(color="blue", size=12, face="bold"),
@@ -55,7 +55,10 @@ ggplot(suicide_devworld_fem_since1990_df,aes(x=year,y=total_pop))+geom_point()+
     axis.title.x = element_text(color="blue", size=12, face="bold"),
     axis.title.y = element_text(color="blue", size=12, face="bold")
   )
-
+#Inferential Statistics
 mean_us <- mean(suicide_us_fem_since1990_df$total_suicides_100K_pop)
 mean_devworld <- mean(suicide_devworld_fem_since1990_df$total_suicides_100K_pop)/length(develop_countries)
-
+var_us <- var(suicide_us_fem_since1990_df$total_suicides_100K_pop)
+var_devworld <- var(suicide_devworld_fem_since1990_df$total_suicides_100K_pop)/length(develop_countries)
+t_test_results <- t.test(suicide_us_fem_since1990_df$total_suicides_100K_pop,suicide_devworld_fem_since1990_df$total_suicides_100K_pop/length(develop_countries))
+t_test_results$statistic
